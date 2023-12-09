@@ -29,11 +29,6 @@ public class XposedMain implements IXposedHookLoadPackage {
             if (Build.VERSION.SDK_INT < 34) {
                 XposedBridge.log("[fcmfix] start hook com.android.server.am.ActivityManagerService");
                 new BroadcastFix(loadPackageParam);
-
-                if(loadPackageParam.packageName.equals("com.google.android.gms") && loadPackageParam.isFirstApplication){
-                    XposedBridge.log("[fcmfix] start hook com.google.android.gms");
-                    new ReconnectManagerFix(loadPackageParam);
-                }
             }
 
             XposedBridge.log("[fcmfix] start hook com.android.server.notification.NotificationManagerServiceInjector");
@@ -44,6 +39,11 @@ public class XposedMain implements IXposedHookLoadPackage {
 
             XposedBridge.log("[fcmfix] com.android.server.notification.NotificationManagerService");
             new KeepNotification(loadPackageParam);
+
+            if(loadPackageParam.packageName.equals("com.google.android.gms") && loadPackageParam.isFirstApplication){
+                XposedBridge.log("[fcmfix] start hook com.google.android.gms");
+                new ReconnectManagerFix(loadPackageParam);
+            }
         }
 
 
