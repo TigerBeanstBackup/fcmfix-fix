@@ -39,13 +39,13 @@ public class XposedMain implements IXposedHookLoadPackage {
 
             XposedBridge.log("[fcmfix] com.android.server.notification.NotificationManagerService");
             new KeepNotification(loadPackageParam);
-
-            if(loadPackageParam.packageName.equals("com.google.android.gms") && loadPackageParam.isFirstApplication){
-                XposedBridge.log("[fcmfix] start hook com.google.android.gms");
-                new ReconnectManagerFix(loadPackageParam);
-            }
         }
 
+
+        if(loadPackageParam.packageName.equals("com.google.android.gms") && loadPackageParam.isFirstApplication){
+            XposedBridge.log("[fcmfix] start hook com.google.android.gms");
+            new ReconnectManagerFix(loadPackageParam);
+        }
 
         if(loadPackageParam.packageName.equals("com.miui.powerkeeper") && loadPackageParam.isFirstApplication){
             XposedBridge.log("[fcmfix] start hook com.miui.powerkeeper");
