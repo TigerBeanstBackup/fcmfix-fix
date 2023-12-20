@@ -99,7 +99,7 @@ public abstract class XposedModule {
                 XposedBridge.log("[fcmfix] " + text);
             }
         } else {
-            XposedBridge.log("[fcmfix] " + text);
+            // XposedBridge.log("[fcmfix] " + text);
         }
     }
 
